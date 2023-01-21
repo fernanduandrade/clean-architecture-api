@@ -1,13 +1,12 @@
-﻿using Bot.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
+using Entities = Bot.Domain.Entities;
 namespace Bot.Application.Common.Interfaces;
 
 public interface IAppContext
 {
-    DbSet<Quiz> Quizes { get; }
-    DbSet<Event> Events { get; }
-    DbSet<EventUser> EventUsers { get; }
-    DbSet<Reward> Rewards { get; }
+    DbSet<Entities.Quiz> Quizes { get; }
+    DbSet<Entities.Event> Events { get; }
+    DbSet<Entities.EventUser> EventUsers { get; }
+    DbSet<Entities.Reward> Rewards { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

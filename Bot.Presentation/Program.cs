@@ -13,15 +13,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
-    app.UseMigrationsEndPoint();
 
-    using(var scope = app.Services.CreateScope())
-    {
+    //using(var scope = app.Services.CreateScope())
+    //{
         //var initializer = scope.ServiceProvider.GetRequiredService<AppDbContextInitializer>();
         //await initialiser.InitializeAsync();
         //await initialiser.SeedAsync();
-    }
+    //}
 }
 else
 {

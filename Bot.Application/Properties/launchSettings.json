@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Bot.Application": {
+      "commandName": "Project"
+    },
+    "Perfil 1": {
+      "commandName": "Executable"
+    }
+  }
+}

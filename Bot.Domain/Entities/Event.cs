@@ -22,6 +22,4 @@ public class Event : BaseAuditiableEntity
             _done = true;
         } 
     }
-
-
 }

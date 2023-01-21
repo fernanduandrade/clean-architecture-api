@@ -58,7 +58,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
@@ -192,19 +192,23 @@
             },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.11, )"
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.FileProviders.Embedded": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",

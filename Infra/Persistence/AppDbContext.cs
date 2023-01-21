@@ -1,5 +1,4 @@
 ﻿using Bot.Application.Common.Interfaces;
-using Bot.Domain.Entities;
 using Bot.Infrastructure.Identity;
 using Bot.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
@@ -8,6 +7,7 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using Entities = Bot.Domain.Entities;
 
 namespace Bot.Infrastructure.Persistence;
 
@@ -26,13 +26,13 @@ public class AppDbContext : ApiAuthorizationDbContext<ApplicationUser>, IAppCont
         _auditableEntitySaveChangesInterceptor= auditableEntitySaveChangesInterceptor;
     }
 
-    public DbSet<Quiz> Quizes => Set<Quiz>();
+    public DbSet<Entities.Quiz> Quizes => Set<Entities.Quiz>();
 
-    public DbSet<Event> Events => Set<Event>();
+    public DbSet<Entities.Event> Events => Set<Entities.Event>();
 
-    public DbSet<EventUser> EventUsers => Set<EventUser>();
+    public DbSet<Entities.EventUser> EventUsers => Set<Entities.EventUser>();
 
-    public DbSet<Reward> Rewards => Set<Reward>();
+    public DbSet<Entities.Reward> Rewards => Set<Entities.Reward>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
