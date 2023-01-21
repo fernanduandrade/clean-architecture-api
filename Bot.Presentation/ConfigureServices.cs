@@ -1,9 +1,10 @@
 ﻿using Bot.Application.Common.Interfaces;
 using Bot.Infrastructure.Persistence;
+using Bot.Presentation.Configuration;
 using Bot.Presentation.Services;
 using Microsoft.AspNetCore.Mvc;
-using NSwag;
-using NSwag.Generation.Processors.Security;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,7 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddPresentationServices(this IServiceCollection services)
     {
+        services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigSwagger>();
         services.AddDatabaseDeveloperPageExceptionFilter();
         services.AddSingleton<ICurrentUserService, CurrentUserService>();
         services.AddHttpContextAccessor();
@@ -21,18 +23,18 @@ public static class ConfigureServices
         services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
 
-        services.AddOpenApiDocument(configure =>
+        services.AddApiVersioning(option =>
         {
-            configure.Title = "CleanArchitecture API";
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            {
-                Type = OpenApiSecuritySchemeType.ApiKey,
-                Name = "Authorization",
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Digite no campo: Bearer {seu token JWT}."
-            });
+            option.AssumeDefaultVersionWhenUnspecified = true;
+            option.DefaultApiVersion = new ApiVersion(1, 0);
+            option.ReportApiVersions = true;
 
-            configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+        });
+
+        services.AddVersionedApiExplorer(setup =>
+        {
+            setup.GroupNameFormat = "'v' VVV";
+            setup.SubstituteApiVersionInUrl = true;
         });
 
         return services;

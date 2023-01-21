@@ -1,4 +1,6 @@
 using Bot.Infrastructure.Persistence;
+using Bot.Presentation.Configuration;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureService(builder.Configuration);
 builder.Services.AddPresentationServices();
+builder.Services.AddSwaggerConfig();
 
 var app = builder.Build();
 
@@ -14,12 +17,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
 
-    //using(var scope = app.Services.CreateScope())
-    //{
-        //var initializer = scope.ServiceProvider.GetRequiredService<AppDbContextInitializer>();
-        //await initialiser.InitializeAsync();
-        //await initialiser.SeedAsync();
-    //}
+    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+    app.UseSwaggerConfig(provider);
 }
 else
 {
@@ -28,12 +27,6 @@ else
 
 app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
-
-app.UseSwaggerUi3(settings =>
-{
-    settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
-});
 
 app.UseRouting();
 

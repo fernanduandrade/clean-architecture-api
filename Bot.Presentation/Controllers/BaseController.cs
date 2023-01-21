@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bot.Presentation.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{version:ApiVersion}/[controller]")]
 public abstract class BaseController : ControllerBase
 {
     private ISender _mediator = null!;
