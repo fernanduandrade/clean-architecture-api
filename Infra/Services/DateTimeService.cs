@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bot.Application.Common.Interfaces;
 
-namespace Bot.Infrastructure.Services
+namespace Bot.Infrastructure.Services;
+
+public class DateTimeService : IDateTime
 {
-    internal class DateTimeService
-    {
-    }
+    public DateTime Now => DateTime.Now;
 }

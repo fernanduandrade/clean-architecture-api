@@ -2,4 +2,4 @@
 
 namespace Bot.Domain.Common;
 
-public interface IDomainEvent : INotification {}
+public abstract class BaseEvent : INotification {}

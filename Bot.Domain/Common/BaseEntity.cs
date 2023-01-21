@@ -5,14 +5,25 @@ namespace Bot.Domain.Common;
 
 public abstract class BaseEntity
 {
-    [Key]
-    public long Id { get; set; }
+    public int Id { get; set; }
+
+    private readonly List<BaseEvent> _domainEvents = new();
 
     [NotMapped]
-    public List<IDomainEvent> DomainEvents { get; } = new();
+    public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public void QueueDomainEvents(IDomainEvent @event)
+    public void AddDomainEvent(BaseEvent domainEvent)
+    { 
+        _domainEvents.Add(domainEvent);
+    }
+
+    public void RemoveDomainEvent(BaseEvent domainEvent)
     {
-        DomainEvents.Add(@event);
+        _domainEvents.Remove(domainEvent);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
     }
 }

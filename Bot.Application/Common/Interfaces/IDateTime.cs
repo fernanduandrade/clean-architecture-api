@@ -2,5 +2,5 @@
 
 public interface IDateTime
 {
-    DateTime Now { get; set; }
+    DateTime Now { get; }
 }
