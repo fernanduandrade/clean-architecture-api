@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FABE4184-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{1BFEB108-6695-4C5D-A67F-FE9C57075CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Application", "Bot.Application\Bot.Application.csproj", "{1C64EBA9-EC52-493F-861F-5BB64A5EF96F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Application", "Bot.Application\Bot.Application.csproj", "{1C64EBA9-EC52-493F-861F-5BB64A5EF96F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Domain", "Bot.Domain\Bot.Domain.csproj", "{5B6BBB11-8DF2-47C9-ACE0-B73892A4E0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Domain", "Bot.Domain\Bot.Domain.csproj", "{5B6BBB11-8DF2-47C9-ACE0-B73892A4E0CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Infrastructure", "Infra\Bot.Infrastructure.csproj", "{2D958F4E-431B-4E92-B271-AF44952AFD25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Infrastructure", "Infra\Bot.Infrastructure.csproj", "{2D958F4E-431B-4E92-B271-AF44952AFD25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot.Presentation", "Bot.Presentation\Bot.Presentation.csproj", "{E86605CE-2DBE-40A0-83C3-110AFDBF63A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot.Presentation", "Bot.Presentation\Bot.Presentation.csproj", "{E86605CE-2DBE-40A0-83C3-110AFDBF63A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

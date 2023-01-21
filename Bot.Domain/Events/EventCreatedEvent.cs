@@ -1,4 +1,4 @@
-﻿namespace Domain.Events;
+﻿namespace Bot.Domain.Events;
 
 public class EventCreatedEvent : BaseEvent
 {

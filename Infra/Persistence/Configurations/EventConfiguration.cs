@@ -28,5 +28,17 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
 
         builder.Property(prop => prop.IsActive)
             .HasColumnName("is_active");
+
+        builder.Property(prop => prop.CreateBy)
+            .HasColumnName("created_by");
+
+        builder.Property(prop => prop.Created)
+            .HasColumnName("created");
+
+        builder.Property(prop => prop.LastModified)
+            .HasColumnName("last_modified");
+
+        builder.Property(prop => prop.LastModifiedBy)
+            .HasColumnName("last_modified_by");
     }
 }

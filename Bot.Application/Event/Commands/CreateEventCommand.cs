@@ -1,5 +1,5 @@
 ﻿using Bot.Application.Common.Interfaces;
-using Domain.Events;
+using Bot.Domain.Events;
 using MediatR;
 using Entites = Bot.Domain.Entities;
 
@@ -7,11 +7,12 @@ namespace Bot.Application.Event.Commands;
 
 public record CreateEventCommand : IRequest<int>
 {
-    public string? Description { get; set; }
-    public bool IsActive { get; set; } = false;
-    public int FkReward { get; set; }
-    public DateTime DateStart { get; set; } = DateTime.Now;
-    public DateTime ExpireAt { get; set; } = DateTime.Now.AddHours(2);
+    public string? Description { get; init; }
+    public bool IsActive { get; init; } = false;
+    public int FkReward { get; init; }
+
+    public DateTime DateStart { get; init; }
+    public DateTime ExpireAt { get; init; }
 }
 
 public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, int>
@@ -29,10 +30,12 @@ public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, int
         {
             Description = request.Description,
             FkReward = request.FkReward,
+            DateStart = request.DateStart,
+            ExpireAt = request.ExpireAt,
         };
 
         entity.AddDomainEvent(new EventCreatedEvent(entity));
-
+        _appContext.Events.Add(entity);
         await _appContext.SaveChangesAsync(cancellationToken);
 
         return entity.Id;

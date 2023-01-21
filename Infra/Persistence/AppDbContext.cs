@@ -48,7 +48,7 @@ public class AppDbContext : ApiAuthorizationDbContext<ApplicationUser>, IAppCont
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
         await _mediator.DispatchDomainEvents(this);
-
-        return await base.SaveChangesAsync(cancellationToken);
+        var result = await base.SaveChangesAsync(cancellationToken);
+        return result;
     }
 }
