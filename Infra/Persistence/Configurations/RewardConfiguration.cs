@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bot.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Bot.Infrastructure.Persistence.Configurations
+namespace Bot.Infrastructure.Persistence.Configurations;
+
+public class RewardConfiguration : IEntityTypeConfiguration<Reward>
 {
-    internal class RewardConfiguration
+    public void Configure(EntityTypeBuilder<Reward> builder)
     {
+        builder.ToTable("reward");
+        builder.HasKey(prop => prop.Id);
+
+        builder.Property(prop => prop.Id)
+            .HasColumnName("id");
+
+        builder.Property(prop => prop.Role)
+            .HasColumnName("badge");
+
+        builder.Property(prop => prop.Earned)
+            .HasColumnName("earned");
+
+        builder.Property(prop => prop.ParticipantReward)
+            .HasColumnName("participant_reward");
+
+        builder.Property(prop => prop.Coin)
+            .HasColumnName("he4rt_coin");
+
+        builder.Property(prop => prop.Xp)
+            .HasColumnName("he4rt_xp");
     }
 }

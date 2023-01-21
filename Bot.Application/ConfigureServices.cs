@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Bot.Application
+namespace Microsoft.Extensions.DependencyInjection;
+
+public static class ConfigureServices
 {
-    public static class ConfigureServices
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-        {
-            services.AddMediatR(Assembly.GetEntryAssembly());
-            return services;
-        }
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddMediatR(Assembly.GetExecutingAssembly());
+        return services;
     }
 }
