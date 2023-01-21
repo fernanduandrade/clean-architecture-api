@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -9,9 +9,32 @@
   <ItemGroup>
     <Folder Include="Abstraction\" />
     <Folder Include="Behavior\" />
-    <Folder Include="Entities\Event\" />
-    <Folder Include="Entities\Reward\" />
-    <Folder Include="Entities\Quiz\" />
+    <Folder Include="EventUser\Commands" />
+    <Folder Include="EventUser\Queries" />
+    <Folder Include="Event\Commands" />
+    <Folder Include="Event\Queries" />
+    <Folder Include="Quiz\Commands" />
+    <Folder Include="Quiz\Queries" />
+    <Folder Include="Reward\Commands" />
+    <Folder Include="Reward\Queries" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

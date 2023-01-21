@@ -1,18 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstraction\" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.1.0" />
+    <Compile Remove="Abstraction\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Abstraction\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Abstraction\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events" />
   </ItemGroup>
 
 </Project>
