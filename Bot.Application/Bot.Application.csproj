@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="Abstraction\" />
     <Folder Include="Behavior\" />
-    <Folder Include="EventUser\Commands" />
-    <Folder Include="EventUser\Queries" />
     <Folder Include="Quiz\Commands" />
     <Folder Include="Quiz\Queries" />
     <Folder Include="Reward\Commands" />
