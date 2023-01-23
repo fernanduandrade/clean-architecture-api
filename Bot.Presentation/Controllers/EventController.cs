@@ -20,6 +20,12 @@ public class EventController : BaseController
         return await Mediator.Send(command);
     }
 
+    [HttpPut]
+    public async Task<ActionResult<bool>> Update([FromBody]UpdateEventCommand command)
+    {
+        return await Mediator.Send(command);
+    }
+ 
     [HttpGet("find-active")]
     public async Task<ActionResult<EventDTO>> GetActiveEvent([FromQuery]GetActiveEventQuery query)
     {
