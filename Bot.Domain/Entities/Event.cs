@@ -6,7 +6,6 @@ public class Event : BaseAuditiableEntity
 {
     public string? Description { get; set; }
     public bool IsActive { get; set; }
-    public int FkReward { get; set; }
     public DateTime DateStart { get; set; }
     public DateTime ExpireAt { get; set; }
 }

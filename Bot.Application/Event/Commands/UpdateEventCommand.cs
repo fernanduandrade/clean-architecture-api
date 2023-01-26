@@ -12,7 +12,6 @@ public record UpdateEventCommand : IRequest<bool>
     public int Id { get; init; }
     public string? Description { get; init; }
     public bool IsActive { get; init; } = false;
-    public int FkReward { get; init; }
 
     public DateTime DateStart { get; init; }
     public DateTime ExpireAt { get; init; }
@@ -38,9 +37,8 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool
             ExpireAt = request.ExpireAt,
             Description = request.Description,
             IsActive = request.IsActive,
-            FkReward = request.FkReward,
             Id = request.Id,
-            CreateBy = currentEntity.CreateBy,
+            CreatedBy = currentEntity.CreatedBy,
             Created = createdDate,
         };
 

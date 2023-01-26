@@ -23,13 +23,10 @@ public class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(prop => prop.ExpireAt)
             .HasColumnName("expire_at");
 
-        builder.Property(prop => prop.FkReward)
-            .HasColumnName("fk_reward");
-
         builder.Property(prop => prop.IsActive)
             .HasColumnName("is_active");
 
-        builder.Property(prop => prop.CreateBy)
+        builder.Property(prop => prop.CreatedBy)
             .HasColumnName("created_by");
 
         builder.Property(prop => prop.Created)

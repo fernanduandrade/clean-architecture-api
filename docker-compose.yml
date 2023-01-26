@@ -1,8 +1,29 @@
-version: '3.4'
+version: "3.4"
 
 services:
-  bot.presentation:
-    image: ${DOCKER_REGISTRY-}botpresentation
-    build:
-      context: .
-      dockerfile: Bot.Presentation/Dockerfile
+  postgresql_database:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=he4rtbot
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=supersecuritypassword
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5051:80"
+    volumes:
+      - pgadmin:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=onanduandrade@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=senhasecreta
+
+volumes:
+  database-data:
+  pgadmin:

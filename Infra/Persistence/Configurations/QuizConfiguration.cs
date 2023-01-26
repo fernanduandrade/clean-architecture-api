@@ -23,8 +23,8 @@ public class QuizConfiguration : IEntityTypeConfiguration<Quiz>
         builder.Property(prop => prop.Title)
             .HasColumnName("title");
 
-        builder.Property(prop => prop.Tip)
-            .HasColumnName("tip");
+        builder.Property(prop => prop.Hint)
+            .HasColumnName("hint");
 
         builder.Property(prop => prop.FkEvent)
             .HasColumnName("fk_event");

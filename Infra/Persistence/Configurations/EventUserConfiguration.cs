@@ -20,7 +20,7 @@ public class EventUserConfiguration : IEntityTypeConfiguration<EventUser>
         builder.Property(prop => prop.FkEvent)
             .HasColumnName("fk_event");
 
-        builder.Property(prop => prop.CreateBy)
+        builder.Property(prop => prop.CreatedBy)
             .HasColumnName("created_by");
 
         builder.Property(prop => prop.Created)

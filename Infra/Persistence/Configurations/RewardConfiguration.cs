@@ -15,18 +15,21 @@ public class RewardConfiguration : IEntityTypeConfiguration<Reward>
             .HasColumnName("id");
 
         builder.Property(prop => prop.Role)
-            .HasColumnName("badge");
+            .HasColumnName("role");
 
-        builder.Property(prop => prop.Earned)
-            .HasColumnName("earned");
+        builder.Property(prop => prop.Claimed)
+            .HasColumnName("claimed");
 
         builder.Property(prop => prop.ParticipantReward)
             .HasColumnName("participant_reward");
 
         builder.Property(prop => prop.Coin)
-            .HasColumnName("he4rt_coin");
+            .HasColumnName("coins");
 
-        builder.Property(prop => prop.Xp)
-            .HasColumnName("he4rt_xp");
+        builder.Property(prop => prop.Expirience)
+            .HasColumnName("expirience");
+
+        builder.Property(prop => prop.FkEvent)
+            .HasColumnName("fk_event");
     }
 }

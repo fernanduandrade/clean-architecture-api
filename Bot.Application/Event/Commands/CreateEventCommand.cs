@@ -9,7 +9,6 @@ public record CreateEventCommand : IRequest<int>
 {
     public string? Description { get; init; }
     public bool IsActive { get; init; } = false;
-    public int FkReward { get; init; }
 
     public DateTime DateStart { get; init; }
     public DateTime ExpireAt { get; init; }
@@ -29,7 +28,6 @@ public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, int
         var entity = new Entites.Event
         {
             Description = request.Description,
-            FkReward = request.FkReward,
             DateStart = request.DateStart,
             ExpireAt = request.ExpireAt,
         };
