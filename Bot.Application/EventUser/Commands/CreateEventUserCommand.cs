@@ -38,6 +38,8 @@ public class CreateEventUserCommandHandle : IRequestHandler<CreateEventUserComma
         var result = await _context.SaveChangesAsync(cancellationToken);
 
         return result > 0 ? true : false;
+
+
     }
 }
 
