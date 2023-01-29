@@ -23,10 +23,12 @@ public class GetActiveEventQueryHandle : IRequestHandler<GetActiveEventQuery, Ev
 
     public async Task<EventDTO> Handle(GetActiveEventQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Events
+        var result = await _context.Events
             .Where(@event => @event.IsActive)
             .ProjectTo<EventDTO>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
+        
+        return result!;
 
     }
 }

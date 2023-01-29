@@ -34,7 +34,7 @@ public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, Clai
             );
 
         Entities.Reward? reward =
-            avaliableReward.ParticipantReward
+            avaliableReward!.ParticipantReward
             ? await _appContext.Rewards.FirstOrDefaultAsync(
                 reward => reward.FkEvent == request.FkEvent
                 && reward.ParticipantReward)
