@@ -1,41 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="Abstraction\" />
     <Folder Include="Behavior\" />
     <Folder Include="Quiz\Commands" />
-    <Folder Include="Quiz\Queries" />
     <Folder Include="Reward\Queries" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Remove="Entities\**" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Remove="Entities\**" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="Entities\**" />
   </ItemGroup>
-
   <ItemGroup>
-	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Bot.Domain\Bot.Domain.csproj" />
   </ItemGroup>
-
 </Project>
