@@ -9,7 +9,7 @@ public class Result
     }
 
     public bool Succeded { get; set; }
-    public string[] Erros { get; set; }
+    public string[]? Erros { get; set; }
     public static Result Success()
     {
         return new Result(true, Array.Empty<string>());
