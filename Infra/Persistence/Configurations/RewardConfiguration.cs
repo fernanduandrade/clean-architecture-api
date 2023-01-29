@@ -31,5 +31,17 @@ public class RewardConfiguration : IEntityTypeConfiguration<Reward>
 
         builder.Property(prop => prop.FkEvent)
             .HasColumnName("fk_event");
+
+        builder.Property(prop => prop.CreatedBy)
+            .HasColumnName("created_by");
+
+        builder.Property(prop => prop.Created)
+            .HasColumnName("created");
+
+        builder.Property(prop => prop.LastModified)
+            .HasColumnName("last_modified");
+
+        builder.Property(prop => prop.LastModifiedBy)
+            .HasColumnName("last_modified_by");
     }
 }

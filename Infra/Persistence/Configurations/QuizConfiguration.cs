@@ -31,5 +31,17 @@ public class QuizConfiguration : IEntityTypeConfiguration<Quiz>
 
         builder.Property(prop => prop.HasNextQuestion)
             .HasColumnName("has_next_question");
+
+        builder.Property(prop => prop.CreatedBy)
+            .HasColumnName("created_by");
+
+        builder.Property(prop => prop.Created)
+            .HasColumnName("created");
+
+        builder.Property(prop => prop.LastModified)
+            .HasColumnName("last_modified");
+
+        builder.Property(prop => prop.LastModifiedBy)
+            .HasColumnName("last_modified_by");
     }
 }

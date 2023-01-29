@@ -23,8 +23,4 @@
     <None Remove="Abstraction\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Events" />
-  </ItemGroup>
-
 </Project>

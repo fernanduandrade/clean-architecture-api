@@ -20,7 +20,7 @@ public class EventUserController : BaseController
     }
 
     [HttpDelete]
-    public async Task<ActionResult<bool>> DeleteUserEvent([FromBody] DeleteEventUserCommand command)
+    public async Task<ActionResult<bool>> DeleteUserEvent([FromQuery] DeleteEventUserCommand command)
     {
         return await Mediator.Send(command);
     }

@@ -1,14 +1,13 @@
 ﻿using Bot.Application.Common.Interfaces;
 using Entities = Bot.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Application.EventUser.Commands;
 
 public record DeleteEventUserCommand : IRequest<bool>
 {
     public int Id { get; set; }
-    public int FkEvent { get; set; }
-    public string UserId { get; set; }
 }
 
 public class DeleteEventUserCommandHandler : IRequestHandler<DeleteEventUserCommand, bool>
@@ -21,12 +20,10 @@ public class DeleteEventUserCommandHandler : IRequestHandler<DeleteEventUserComm
 
     public async Task<bool> Handle(DeleteEventUserCommand request, CancellationToken cancellationToken)
     {
-        Entities.EventUser entity = new()
-        {
-            Id = request.Id,
-            FkEvent = request.FkEvent,
-            FkUser = request.UserId
-        };
+        var entity = await _context.EventUsers.FirstOrDefaultAsync(
+            eventUser => eventUser.Id == request.Id);
+
+        if (entity is null) return false;
 
         _context.EventUsers.Remove(entity);
         await _context.SaveChangesAsync(cancellationToken);
