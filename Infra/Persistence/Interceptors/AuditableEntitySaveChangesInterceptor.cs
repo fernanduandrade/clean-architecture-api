@@ -46,6 +46,8 @@ public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
 
             if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
             {
+                entry.Property(p => p.CreatedBy).IsModified = false;
+                entry.Property(p => p.Created).IsModified = false;
                 entry.Entity.LastModifiedBy = _currentUserService.UserId;
                 entry.Entity.LastModified = _dateTime.Now;
             }

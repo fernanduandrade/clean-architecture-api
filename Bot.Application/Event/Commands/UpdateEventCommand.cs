@@ -28,9 +28,6 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool
 
     public async Task<bool> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
-
-        var currentEntity = await _context.Events.FirstOrDefaultAsync(evt => evt.Id == request.Id);
-        var createdDate = DateTime.SpecifyKind((DateTime)currentEntity.Created, DateTimeKind.Utc);
         var entity = new Entites.Event
         {
             DateStart = request.DateStart,
@@ -38,8 +35,6 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool
             Description = request.Description,
             IsActive = request.IsActive,
             Id = request.Id,
-            CreatedBy = currentEntity.CreatedBy,
-            Created = createdDate,
         };
 
         entity.AddDomainEvent(new EventCreatedEvent(entity));
