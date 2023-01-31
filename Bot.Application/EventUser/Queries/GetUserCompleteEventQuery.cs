@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Bot.Application.Common;
 using Bot.Application.Common.Interfaces;
 using Bot.Application.EventUser.DTO;
 using MediatR;
@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Application.EventUser.Queries;
 
-public record GetUserCompleteEventQuery : IRequest<UserCompleteEventDTO>
+public record GetUserCompleteEventQuery : IRequest<ApiResult<UserCompleteEventDTO>>
 {
     public string? UserDiscordId { get; set; }
 }
 
-public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEventQuery, UserCompleteEventDTO>
+public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEventQuery, ApiResult<UserCompleteEventDTO>>
 {
     private readonly IAppContext _appContext;
 
@@ -20,7 +20,7 @@ public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEv
         _appContext = appContext;
     }
 
-    public async Task<UserCompleteEventDTO> Handle(GetUserCompleteEventQuery request, CancellationToken cancellationToken)
+    public async Task<ApiResult<UserCompleteEventDTO>> Handle(GetUserCompleteEventQuery request, CancellationToken cancellationToken)
     {
             var result = await _appContext.EventUsers
             .Where(evtUser => evtUser.FkUser == request.UserDiscordId)
@@ -28,8 +28,8 @@ public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEv
 
         if(result is null)
         {
-            return new UserCompleteEventDTO { HasCompleteEvent = false };
+            return new ApiResult<UserCompleteEventDTO>(new UserCompleteEventDTO { HasCompleteEvent = false }, "Usuário não completou o evento.");
         }
-        return new UserCompleteEventDTO { HasCompleteEvent = true };
+        return new ApiResult<UserCompleteEventDTO>(new UserCompleteEventDTO { HasCompleteEvent = true }, "Usuário já realizou este evento.");
     }
 }

@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using Bot.Application.Common.Interfaces;
 using Entities = Bot.Domain.Entities;
-using Bot.Domain.Events;
 using MediatR;
 using Domain.Events;
+using Bot.Application.Common;
 
 namespace Bot.Application.EventUser.Commands;
 
-public record CreateEventUserCommand : IRequest<bool>
+public record CreateEventUserCommand : IRequest<ApiResult<bool>>
 {
     public string? UserDiscordId { get; init; }
     public int EventId { get; init; }
 }
 
-public class CreateEventUserCommandHandle : IRequestHandler<CreateEventUserCommand, bool>
+public class CreateEventUserCommandHandle : IRequestHandler<CreateEventUserCommand, ApiResult<bool>>
 {
     private readonly IAppContext _context;
     private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ public class CreateEventUserCommandHandle : IRequestHandler<CreateEventUserComma
         _mapper = mapper;
     }
 
-    public async Task<bool> Handle(CreateEventUserCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<bool>> Handle(CreateEventUserCommand request, CancellationToken cancellationToken)
     {
         Entities.EventUser entity = new()
         {
@@ -37,7 +37,7 @@ public class CreateEventUserCommandHandle : IRequestHandler<CreateEventUserComma
         _context.EventUsers.Add(entity);
         var result = await _context.SaveChangesAsync(cancellationToken);
 
-        return result > 0 ? true : false;
+        return new ApiResult<bool>(result > 0, "Operação realizada com sucesso.");
 
 
     }

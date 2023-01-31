@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Bot.Application.Common;
 using Bot.Application.Common.Interfaces;
 using Bot.Application.Event.DTO;
 using MediatR;
@@ -7,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Application.Event.Queries;
 
-public record GetActiveEventQuery : IRequest<EventDTO>
+public record GetActiveEventQuery : IRequest<ApiResult<EventDTO>>
 {}
 
-public class GetActiveEventQueryHandle : IRequestHandler<GetActiveEventQuery, EventDTO>
+public class GetActiveEventQueryHandle : IRequestHandler<GetActiveEventQuery, ApiResult<EventDTO>>
 {
     private readonly IAppContext _context;
     private readonly IMapper _mapper;
@@ -21,14 +22,14 @@ public class GetActiveEventQueryHandle : IRequestHandler<GetActiveEventQuery, Ev
         _mapper = mapper;
     }
 
-    public async Task<EventDTO> Handle(GetActiveEventQuery request, CancellationToken cancellationToken)
+    public async Task<ApiResult<EventDTO>> Handle(GetActiveEventQuery request, CancellationToken cancellationToken)
     {
         var result = await _context.Events
             .Where(@event => @event.IsActive)
             .ProjectTo<EventDTO>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
         
-        return result!;
+        return new ApiResult<EventDTO>(result, "Operação concluida com sucesso.");
 
     }
 }

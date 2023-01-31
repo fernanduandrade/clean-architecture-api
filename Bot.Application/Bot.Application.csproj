@@ -5,18 +5,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Abstraction\" />
-    <Folder Include="Behavior\" />
     <Folder Include="Quiz\Commands" />
     <Folder Include="Reward\Queries" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Abstraction\**" />
     <Compile Remove="Entities\**" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Remove="Abstraction\**" />
     <EmbeddedResource Remove="Entities\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Abstraction\**" />
     <None Remove="Entities\**" />
   </ItemGroup>
   <ItemGroup>

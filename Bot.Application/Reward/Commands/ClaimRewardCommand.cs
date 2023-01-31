@@ -5,16 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using Bot.Application.Reward.DTO;
 using Bot.Domain.Events;
 using Bot.Application.EventUser.Commands;
+using Bot.Application.Common;
 
 namespace Bot.Application.Reward.Commands;
 
-public record ClaimRewardCommand : IRequest<ClaimRewardDTO>
+public record ClaimRewardCommand : IRequest<ApiResult<ClaimRewardDTO>>
 {
     public string? UserId { get; set; }
     public int FkEvent { get; set; }
 }
 
-public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, ClaimRewardDTO>
+public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, ApiResult<ClaimRewardDTO>>
 {
     private readonly IAppContext _appContext;
     private readonly IMediator _mediator;
@@ -24,7 +25,7 @@ public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, Clai
         _mediator = mediator;
     }
 
-    public async Task<ClaimRewardDTO> Handle(ClaimRewardCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<ClaimRewardDTO>> Handle(ClaimRewardCommand request, CancellationToken cancellationToken)
     {
         var avaliableReward = await _appContext.Rewards
             .OrderBy(o => o.Id)
@@ -58,15 +59,15 @@ public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, Clai
 
             await _mediator.Send(evtUserCommand);
 
-            return new ClaimRewardDTO
+            return new ApiResult<ClaimRewardDTO>(new ClaimRewardDTO
             {
                 Coins = reward.Coin,
                 Expirience = reward.Expirience,
                 Id = reward.Id,
                 Role = reward.Role
-            };
+            }, "Operação realizada com sucesso");
         }
 
-        return new ClaimRewardDTO();
+        return new ApiResult<ClaimRewardDTO>(new ClaimRewardDTO(), "falha ao obter a recompensa.");
     }
 }

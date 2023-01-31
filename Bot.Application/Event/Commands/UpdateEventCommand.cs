@@ -1,4 +1,5 @@
-﻿using Bot.Application.Common.Interfaces;
+﻿using Bot.Application.Common;
+using Bot.Application.Common.Interfaces;
 using Bot.Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Entites = Bot.Domain.Entities;
 
 namespace Bot.Application.Event.Commands;
 
-public record UpdateEventCommand : IRequest<bool>
+public record UpdateEventCommand : IRequest<ApiResult<bool>>
 {
     public int Id { get; init; }
     public string? Description { get; init; }
@@ -17,7 +18,7 @@ public record UpdateEventCommand : IRequest<bool>
     public DateTime ExpireAt { get; init; }
 }
 
-public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool>
+public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, ApiResult<bool>>
 {
     private readonly IAppContext _context;
 
@@ -26,7 +27,7 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool
         _context = context;
     }
 
-    public async Task<bool> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResult<bool>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
         var entity = new Entites.Event
         {
@@ -42,6 +43,6 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, bool
         await _context.SaveChangesAsync(cancellationToken);
         
 
-        return true;
+        return new ApiResult<bool>(true, "Operação concluida com sucesso");
     }
 }

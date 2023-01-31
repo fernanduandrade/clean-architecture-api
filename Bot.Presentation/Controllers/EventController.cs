@@ -3,31 +3,37 @@ using Bot.Application.Event.Commands;
 using Bot.Application.Event.Queries;
 using Bot.Application.Event.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Bot.Application.Common;
 
 namespace Bot.Presentation.Controllers;
 
 public class EventController : BaseController
 {
     [HttpGet]
-    public async Task<ActionResult<PaginatedList<EventDTO>>> GetEventsWithPagination([FromQuery] GetEventsWithPaginationQuery query)
+    [ProducesResponseType(typeof(ApiResult<PaginatedList<EventDTO>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PaginatedList<string>), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ApiResult<PaginatedList<EventDTO>>>> GetEventsWithPagination([FromQuery] GetEventsWithPaginationQuery query)
     {
         return await Mediator.Send(query);
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateEventCommand command)
+    [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResult<int>>> Create(CreateEventCommand command)
     {
         return await Mediator.Send(command);
     }
 
     [HttpPut]
-    public async Task<ActionResult<bool>> Update([FromBody]UpdateEventCommand command)
+    [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResult<bool>>> Update([FromBody]UpdateEventCommand command)
     {
         return await Mediator.Send(command);
     }
  
     [HttpGet("find-active")]
-    public async Task<ActionResult<EventDTO>> GetActiveEvent([FromQuery]GetActiveEventQuery query)
+    [ProducesResponseType(typeof(ApiResult<EventDTO>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResult<EventDTO>>> GetActiveEvent([FromQuery]GetActiveEventQuery query)
     {
         return await Mediator.Send(query);
     }
