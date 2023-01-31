@@ -29,6 +29,7 @@ public class GetEventsWithPaginationQueryHandle : IRequestHandler<GetEventsWithP
     public async Task<ApiResult<PaginatedList<EventDTO>>> Handle(GetEventsWithPaginationQuery request, CancellationToken cancellationToken)
     {
         var result = await _context.Events
+            .AsNoTracking()
             .ProjectTo<EventDTO>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(request.PageNumber, request.PageSize);
 

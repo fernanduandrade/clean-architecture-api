@@ -25,6 +25,7 @@ public class GetActiveEventQueryHandle : IRequestHandler<GetActiveEventQuery, Ap
     public async Task<ApiResult<EventDTO>> Handle(GetActiveEventQuery request, CancellationToken cancellationToken)
     {
         var result = await _context.Events
+            .AsNoTracking()
             .Where(@event => @event.IsActive)
             .ProjectTo<EventDTO>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);

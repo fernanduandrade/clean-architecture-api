@@ -28,6 +28,7 @@ public class GetAllQuizesByEventIdQueryHandle : IRequestHandler<GetAllQuizesByEv
     public async Task<ApiResult<List<QuizDTO>>> Handle(GetAllQuizesByEventIdQuery request, CancellationToken cancellationToken)
     {
         var quizes = await _context.Quizes
+            .AsNoTracking()
             .Where(quiz => quiz.FkEvent == request.EventId)
             .ProjectTo<QuizDTO>(_mapper.ConfigurationProvider)
             .ToListAsync();

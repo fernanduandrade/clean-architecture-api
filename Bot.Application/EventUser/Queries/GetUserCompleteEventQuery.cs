@@ -23,6 +23,7 @@ public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEv
     public async Task<ApiResult<UserCompleteEventDTO>> Handle(GetUserCompleteEventQuery request, CancellationToken cancellationToken)
     {
             var result = await _appContext.EventUsers
+            .AsNoTracking()
             .Where(evtUser => evtUser.FkUser == request.UserDiscordId)
             .FirstOrDefaultAsync(cancellationToken);
 
