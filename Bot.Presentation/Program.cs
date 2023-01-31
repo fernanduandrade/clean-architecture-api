@@ -6,6 +6,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Net.Mime;
 using System.Text.Json;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -56,3 +57,6 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.Run();
+
+
+public partial class Program { }

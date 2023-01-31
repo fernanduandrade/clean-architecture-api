@@ -6,6 +6,7 @@ using Bot.Application.Common.Mapping;
 using Bot.Application.Common.Models;
 using Bot.Application.Event.DTO;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bot.Application.Event.Queries;
 
