@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bot.Presentation.Controllers
 {
-    public class RewardControlle : BaseController
+    public class RewardController : BaseController
     {
         [HttpPost("claim-reward")]
         [ProducesResponseType(typeof(ApiResult<ClaimRewardDTO>), StatusCodes.Status200OK)]

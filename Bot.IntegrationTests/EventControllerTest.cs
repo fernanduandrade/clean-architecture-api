@@ -24,6 +24,16 @@ public class EventControllerTest : IClassFixture<WebApplicationFactory<Program>>
         Assert.True(response.IsSuccessStatusCode);
     }
 
+    [Theory]
+    [InlineData("api/v1/Event/find-active?query=1")]
+    public async Task GetActiveEventById_Should_Return200Ok(string url)
+    {
+        var client = _factory.CreateClient();
+
+        var response = await client.GetAsync(url);
+        Assert.True(response.IsSuccessStatusCode);
+    }
+
     [Fact]
     public async Task CreateEvent_Should_Return200Ok()
     {
@@ -40,6 +50,28 @@ public class EventControllerTest : IClassFixture<WebApplicationFactory<Program>>
         var byteContent = new ByteArrayContent(buffer);
         byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         var response = await client.PostAsync("api/v1/Event", byteContent);
+
+        Assert.True(response.IsSuccessStatusCode);
+    }
+
+    [Fact]
+    public async Task UpdateEvent_Should_Return200Ok()
+    {
+        UpdateEventCommand @event = new()
+        {
+            Id = 1,
+            DateStart = DateTime.UtcNow,
+            ExpireAt = DateTime.UtcNow.AddDays(3),
+            Description = "Event about general knowlodge",
+            IsActive = true
+        };
+
+        var client = _factory.CreateClient();
+        var body = JsonSerializer.Serialize(@event);
+        var buffer = System.Text.Encoding.UTF8.GetBytes(body);
+        var byteContent = new ByteArrayContent(buffer);
+        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        var response = await client.PutAsync("api/v1/Event", byteContent);
 
         Assert.True(response.IsSuccessStatusCode);
     }
