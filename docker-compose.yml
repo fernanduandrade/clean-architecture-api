@@ -17,7 +17,7 @@ services:
     image: dpage/pgadmin4
     restart: always
     ports:
-      - "5051:80"
+      - "5050:80"
     volumes:
       - pgadmin:/root/.pgadmin
     environment:

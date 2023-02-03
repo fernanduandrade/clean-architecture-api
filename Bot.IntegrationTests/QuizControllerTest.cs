@@ -12,8 +12,8 @@ public class QuizControllerTest : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Theory]
-    [InlineData("/api/v1/Quiz/get-by-event-id=1")]
-    public async Task GetQuizByEventIdEndpoint_Should_ReturnOk(string url)
+    [InlineData("api/v1/Quiz/get-by-event-id?EventId=1")]
+    public async Task GetQuizByEventIdEndpoint_Should_Return200Ok(string url)
     {
         // Arrange
         var client = _factory.CreateClient();
