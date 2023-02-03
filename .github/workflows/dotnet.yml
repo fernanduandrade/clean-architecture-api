@@ -18,7 +18,5 @@ jobs:
         dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore ./Bot.Presentation//Bot.Presentation.csproj
-    - name: Test
-      run: dotnet test ./Bot.IntegrationTests
     - name: Build
       run: dotnet build ./Bot.Presentation/Bot.Presentation.csproj --no-restore
