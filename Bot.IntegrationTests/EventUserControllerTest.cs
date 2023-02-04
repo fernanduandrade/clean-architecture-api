@@ -1,19 +1,14 @@
-using Bot.Application.Event.Commands;
+using System.Net;
 using Bot.Application.EventUser.Commands;
-using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net.Http.Headers;
-using System.Text.Json;
+using Bot.Infrastructure.Persistence;
+using Bot.IntegrationTests.Commons;
+using Bot.IntegrationTests.Setup;
 
 namespace Bot.IntegrationTests;
 
-public class EventUserControllerTest : IClassFixture<WebApplicationFactory<Program>>
+public class EventUserControllerTest : ClientFixture
 {
-    private readonly WebApplicationFactory<Program> _factory;
-
-    public EventUserControllerTest(WebApplicationFactory<Program> factory)
-    {
-        _factory = factory;
-    }
+    public EventUserControllerTest(WebAppTestFactory<Program, AppDbContext> factory) : base(factory) {}
 
     [Theory]
     [InlineData("1")]
@@ -23,11 +18,9 @@ public class EventUserControllerTest : IClassFixture<WebApplicationFactory<Progr
     {
         var url = $"api/v1/EventUser?Id={id}";
 
-        var client = _factory.CreateClient();
+        var response = await AsGetAsync(url);
 
-        var response = await client.GetAsync(url);
-
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.OK,  response.StatusCode);
     }
 
     [Theory]
@@ -38,11 +31,9 @@ public class EventUserControllerTest : IClassFixture<WebApplicationFactory<Progr
     {
         var url = $"api/v1/EventUser/check-user?UserDiscordId={id}";
 
-        var client = _factory.CreateClient();
+        var response = await AsGetAsync(url);
 
-        var response = await client.GetAsync(url);
-
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
@@ -53,17 +44,9 @@ public class EventUserControllerTest : IClassFixture<WebApplicationFactory<Progr
             EventId = 2,
             UserDiscordId = "1781398562"
         };
-        var url = $"api/v1/EventUser";
 
-        var client = _factory.CreateClient();
+        var response = await AsPostAsync("api/v1/EventUser", request);
 
-        var body = JsonSerializer.Serialize(request);
-        var buffer = System.Text.Encoding.UTF8.GetBytes(body);
-        var byteContent = new ByteArrayContent(buffer);
-        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await client.PostAsync("api/v1/Event", byteContent);
-
-        Assert.True(response.IsSuccessStatusCode);
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

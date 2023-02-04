@@ -1,27 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using System.Net;
+using Bot.Infrastructure.Persistence;
+using Bot.IntegrationTests.Commons;
+using Bot.IntegrationTests.Setup;
 
 namespace Bot.IntegrationTests;
 
-public class QuizControllerTest : IClassFixture<WebApplicationFactory<Program>>
+public class QuizControllerTest : ClientFixture
 {
-    private readonly WebApplicationFactory<Program> _factory;
-
-    public QuizControllerTest(WebApplicationFactory<Program> factory)
-    {
-        _factory = factory;
-    }
+    public QuizControllerTest(WebAppTestFactory<Program, AppDbContext> factory) : base(factory) {}
 
     [Theory]
     [InlineData("api/v1/Quiz/get-by-event-id?EventId=1")]
     public async Task GetQuizByEventIdEndpoint_Should_Return200Ok(string url)
     {
-        // Arrange
-        var client = _factory.CreateClient();
+        var response = await AsGetAsync(url);
 
-        // Act
-        var response = await client.GetAsync(url);
-
-        // Assert
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

@@ -1,37 +1,31 @@
 using Bot.Application.Event.Commands;
-using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net.Http.Headers;
-using System.Text.Json;
+using Bot.Infrastructure.Persistence;
+using Bot.IntegrationTests.Commons;
+using System.Net;
+using Bot.IntegrationTests.Setup;
 
 namespace Bot.IntegrationTests;
 
-public class EventControllerTest : IClassFixture<WebApplicationFactory<Program>>
+public class EventControllerTest : ClientFixture
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    public EventControllerTest(WebAppTestFactory<Program, AppDbContext> factory) : base(factory) {}
 
-    public EventControllerTest(WebApplicationFactory<Program> factory)
-    {
-        _factory = factory;
-    }
 
     [Theory]
     [InlineData("api/v1/Event?PageNumber=1&PageSize=1")]
     public async Task GetEventPaginated_Should_Return200Ok(string url)
     {
-        var client = _factory.CreateClient();
-
-        var response = await client.GetAsync(url);
-        Assert.True(response.IsSuccessStatusCode);
+        var response = await AsGetAsync(url);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Theory]
     [InlineData("api/v1/Event/find-active?query=1")]
     public async Task GetActiveEventById_Should_Return200Ok(string url)
     {
-        var client = _factory.CreateClient();
 
-        var response = await client.GetAsync(url);
-        Assert.True(response.IsSuccessStatusCode);
+        var response = await AsGetAsync(url);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
@@ -44,14 +38,9 @@ public class EventControllerTest : IClassFixture<WebApplicationFactory<Program>>
             Description = "Event about general knowlodge",
         };
 
-        var client = _factory.CreateClient();
-        var body = JsonSerializer.Serialize(@event);
-        var buffer = System.Text.Encoding.UTF8.GetBytes(body);
-        var byteContent = new ByteArrayContent(buffer);
-        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await client.PostAsync("api/v1/Event", byteContent);
+        var response = await AsPostAsync("api/v1/Event", @event);
 
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
     [Fact]
@@ -66,13 +55,8 @@ public class EventControllerTest : IClassFixture<WebApplicationFactory<Program>>
             IsActive = true
         };
 
-        var client = _factory.CreateClient();
-        var body = JsonSerializer.Serialize(@event);
-        var buffer = System.Text.Encoding.UTF8.GetBytes(body);
-        var byteContent = new ByteArrayContent(buffer);
-        byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await client.PutAsync("api/v1/Event", byteContent);
+        var response = await AsPutAsync("api/v1/Event", @event);
 
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
