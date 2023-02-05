@@ -29,7 +29,7 @@ public class EventControllerTest : ClientFixture
     }
 
     [Fact]
-    public async Task CreateEvent_Should_Return200Ok()
+    public async Task CreateEvent_Should_Return201Created()
     {
         CreateEventCommand @event = new()
         {

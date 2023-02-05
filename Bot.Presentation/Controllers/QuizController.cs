@@ -11,6 +11,7 @@ public class QuizController : BaseController
     [ProducesResponseType(typeof(ApiResult<List<QuizDTO>>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResult<List<QuizDTO>>>> GetAll([FromQuery]GetAllQuizesByEventIdQuery query)
     {
-        return await Mediator.Send(query);
+        var result = await Mediator.Send(query);
+        return Ok(result);
     }
 }

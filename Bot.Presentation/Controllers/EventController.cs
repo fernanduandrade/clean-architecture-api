@@ -21,21 +21,24 @@ public class EventController : BaseController
     [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status201Created)]
     public async Task<ActionResult<ApiResult<int>>> Create(CreateEventCommand command)
     {
-        return await Mediator.Send(command);
+        var result = await Mediator.Send(command);
+        return Created("", result);
     }
 
     [HttpPut]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResult<bool>>> Update([FromBody]UpdateEventCommand command)
     {
-        return await Mediator.Send(command);
+        var result = await Mediator.Send(command);
+        return Ok(result);
     }
  
     [HttpGet("find-active")]
     [ProducesResponseType(typeof(ApiResult<EventDTO>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResult<EventDTO>>> GetActiveEvent([FromQuery]GetActiveEventQuery query)
     {
-        return await Mediator.Send(query);
+        var result = await Mediator.Send(query);
+        return Ok(result);
     }
 
 }

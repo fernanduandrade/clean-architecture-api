@@ -12,20 +12,23 @@ public class EventUserController : BaseController
     [ProducesResponseType(typeof(ApiResult<UserCompleteEventDTO>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResult<UserCompleteEventDTO>>> CheckUserCompleteEvent([FromQuery] GetUserCompleteEventQuery query)
     {
-        return await Mediator.Send(query);
+        var result = await Mediator.Send(query);
+        return Ok(result);
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status201Created)]
     public async Task<ActionResult<ApiResult<bool>>> CreateUserEvent([FromBody] CreateEventUserCommand command)
     {
-        return await Mediator.Send(command);
+        var result = await Mediator.Send(command);
+        return Created("", result);
     }
 
     [HttpDelete]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResult<bool>>> DeleteUserEvent([FromQuery] DeleteEventUserCommand command)
     {
-        return await Mediator.Send(command);
+        var result = await Mediator.Send(command);
+        return Ok(result);
     }
 }

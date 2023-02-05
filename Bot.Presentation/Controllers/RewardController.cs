@@ -12,7 +12,8 @@ namespace Bot.Presentation.Controllers
         [ProducesResponseType(typeof(ApiResult<ClaimRewardDTO>), StatusCodes.Status200OK)]
         public async Task<ActionResult<ApiResult<ClaimRewardDTO>>> ClaimReward(ClaimRewardCommand command)
         {
-            return await Mediator.Send(command);
+            var result = await Mediator.Send(command); 
+            return Ok(result);
         }
     }
 }
