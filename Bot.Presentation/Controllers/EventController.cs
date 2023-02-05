@@ -18,7 +18,7 @@ public class EventController : BaseController
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status201Created)]
     public async Task<ActionResult<ApiResult<int>>> Create(CreateEventCommand command)
     {
         return await Mediator.Send(command);
