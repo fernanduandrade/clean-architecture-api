@@ -20,3 +20,5 @@ jobs:
       run: dotnet restore ./Bot.Presentation//Bot.Presentation.csproj
     - name: Build
       run: dotnet build ./Bot.Presentation/Bot.Presentation.csproj --no-restore
+    - name: Running Tests
+      run: dotnet build ./Bot.IntegrationTests/Bot.IntegrationTests.csproj
