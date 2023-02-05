@@ -1,9 +1,8 @@
 ﻿using Bot.Application.Common.Interfaces;
-using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace Bot.Application.Common.Behavior;
+namespace Bot.Application.Common.Behaviors;
 
 public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : notnull
 {

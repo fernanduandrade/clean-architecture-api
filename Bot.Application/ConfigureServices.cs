@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿
+using System.Reflection;
 using MediatR;
+using FluentValidation;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +11,7 @@ public static class ConfigureServices
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         return services;
     }
 }

@@ -14,7 +14,8 @@ public class EventController : BaseController
     [ProducesResponseType(typeof(PaginatedList<string>), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ApiResult<PaginatedList<EventDTO>>>> GetEventsWithPagination([FromQuery] GetEventsWithPaginationQuery query)
     {
-        return await Mediator.Send(query);
+        var result = await Mediator.Send(query);
+        return Ok(result);
     }
 
     [HttpPost]
@@ -22,6 +23,9 @@ public class EventController : BaseController
     public async Task<ActionResult<ApiResult<int>>> Create(CreateEventCommand command)
     {
         var result = await Mediator.Send(command);
+        if(result.Errors is not null) {
+            return BadRequest(result);
+        }
         return Created("", result);
     }
 
