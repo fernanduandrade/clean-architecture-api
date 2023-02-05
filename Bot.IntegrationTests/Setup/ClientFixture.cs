@@ -41,4 +41,9 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
     {
         return await Client.GetAsync(url);
     }
+
+    public async Task<HttpResponseMessage> AsDeleteAsync(string url)
+    {
+        return await Client.DeleteAsync(url);
+    }
 }

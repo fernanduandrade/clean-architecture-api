@@ -29,7 +29,14 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, ApiR
 
     public async Task<ApiResult<bool>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
-        var entity = new Entites.Event
+        var entity = await _context.Events.FirstOrDefaultAsync(evt => evt.Id == request.Id);
+
+        if(entity is null)
+        {
+            return new ApiResult<bool>(false, "Falha ao executar a operação.");
+        }
+
+        var newEntity = new Entites.Event
         {
             DateStart = request.DateStart,
             ExpireAt = request.ExpireAt,
@@ -38,11 +45,10 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, ApiR
             Id = request.Id,
         };
 
-        entity.AddDomainEvent(new EventCreatedEvent(entity));
-        _context.Events.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync(cancellationToken);
+        newEntity.AddDomainEvent(new EventCreatedEvent(newEntity));
+        _context.Events.Entry(newEntity).State = EntityState.Modified;
+         await _context.SaveChangesAsync(cancellationToken);
         
-
         return new ApiResult<bool>(true, "Operação concluida com sucesso");
     }
 }

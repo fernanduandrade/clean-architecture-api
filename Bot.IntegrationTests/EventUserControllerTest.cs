@@ -18,7 +18,7 @@ public class EventUserControllerTest : ClientFixture
     {
         var url = $"api/v1/EventUser?Id={id}";
 
-        var response = await AsGetAsync(url);
+        var response = await AsDeleteAsync(url);
 
         Assert.Equal(HttpStatusCode.OK,  response.StatusCode);
     }

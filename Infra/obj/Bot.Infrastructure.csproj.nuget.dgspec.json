@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Infra\\Bot.Infrastructure.csproj": {}
+    "/home/fernando/Desktop/repositories/clean-architecture-api/Infra/Bot.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\Bot.Application.csproj": {
+    "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/Bot.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\Bot.Application.csproj",
+        "projectUniqueName": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/Bot.Application.csproj",
         "projectName": "Bot.Application",
-        "projectPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\Bot.Application.csproj",
-        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\obj\\",
+        "projectPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/Bot.Application.csproj",
+        "packagesPath": "/home/fernando/.nuget/packages/",
+        "outputPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/fernando/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\Bot.Domain.csproj": {
-                "projectPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\Bot.Domain.csproj"
+              "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/Bot.Domain.csproj": {
+                "projectPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/Bot.Domain.csproj"
               }
             }
           }
@@ -81,28 +79,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\Bot.Domain.csproj": {
+    "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/Bot.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\Bot.Domain.csproj",
+        "projectUniqueName": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/Bot.Domain.csproj",
         "projectName": "Bot.Domain",
-        "projectPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\Bot.Domain.csproj",
-        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Domain\\obj\\",
+        "projectPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/Bot.Domain.csproj",
+        "packagesPath": "/home/fernando/.nuget/packages/",
+        "outputPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/fernando/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -142,36 +138,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Infra\\Bot.Infrastructure.csproj": {
+    "/home/fernando/Desktop/repositories/clean-architecture-api/Infra/Bot.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Infra\\Bot.Infrastructure.csproj",
+        "projectUniqueName": "/home/fernando/Desktop/repositories/clean-architecture-api/Infra/Bot.Infrastructure.csproj",
         "projectName": "Bot.Infrastructure",
-        "projectPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Infra\\Bot.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Infra\\obj\\",
+        "projectPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Infra/Bot.Infrastructure.csproj",
+        "packagesPath": "/home/fernando/.nuget/packages/",
+        "outputPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Infra/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/fernando/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\Bot.Application.csproj": {
-                "projectPath": "C:\\Users\\Fernando\\Desktop\\clean-architecture-api\\Bot.Application\\Bot.Application.csproj"
+              "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/Bot.Application.csproj": {
+                "projectPath": "/home/fernando/Desktop/repositories/clean-architecture-api/Bot.Application/Bot.Application.csproj"
               }
             }
           }
@@ -231,7 +225,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }
