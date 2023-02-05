@@ -24,6 +24,6 @@ public class RewardControllerTest : ClientFixture
         };
 
         var response = await AsPostAsync("api/v1/Reward/claim-reward", reward);
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 }

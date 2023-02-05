@@ -47,6 +47,6 @@ public class EventUserControllerTest : ClientFixture
 
         var response = await AsPostAsync("api/v1/EventUser", request);
 
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 }
