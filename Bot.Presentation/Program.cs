@@ -1,4 +1,3 @@
-using Bot.Infrastructure.Persistence;
 using Bot.Presentation.Configuration;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
