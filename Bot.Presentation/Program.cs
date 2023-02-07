@@ -1,4 +1,5 @@
 using Bot.Presentation.Configuration;
+using Bot.Presentation.Middlwares;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -54,7 +55,7 @@ app.UseHealthChecks("/status", new HealthCheckOptions
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.Run();
 
 

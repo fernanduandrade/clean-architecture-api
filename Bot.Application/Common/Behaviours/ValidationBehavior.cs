@@ -3,9 +3,8 @@ using MediatR;
 
 namespace Bot.Application.Common.Behaviors;
 
-public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, ApiResult<TResponse>>
+public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
-    where TResponse : ApiResult<TResponse>?
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -14,7 +13,7 @@ public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior
         _validators = validators;
     }
 
-    public async Task<ApiResult<TResponse>> Handle(TRequest request, RequestHandlerDelegate<ApiResult<TResponse>> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if(_validators.Any())
         {
