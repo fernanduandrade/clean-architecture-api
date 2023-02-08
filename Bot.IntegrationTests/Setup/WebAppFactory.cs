@@ -1,4 +1,4 @@
-using Bot.IntegrationTests.Setup;
+using Bot.IntegrationTests.SeedWork;
 using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Configurations;
 using DotNet.Testcontainers.Containers;

@@ -13,7 +13,7 @@ namespace Bot.Presentation.Controllers
         public async Task<ActionResult<ApiResult<ClaimRewardDTO>>> ClaimReward(ClaimRewardCommand command)
         {
             var result = await Mediator.Send(command); 
-            return Ok(result);
+            return Created("",result);
         }
     }
 }

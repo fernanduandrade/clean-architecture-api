@@ -2,7 +2,6 @@ using System.Net;
 using Bot.Application.EventUser.Commands;
 using Bot.Infrastructure.Persistence;
 using Bot.IntegrationTests.Commons;
-using Bot.IntegrationTests.Setup;
 
 namespace Bot.IntegrationTests;
 
@@ -41,8 +40,8 @@ public class EventUserControllerTest : ClientFixture
     {
         CreateEventUserCommand request = new()
         {
-            EventId = 2,
-            UserDiscordId = "1781398562"
+            EventId = 1002,
+            UserDiscordId = "1781398562",
         };
 
         var response = await AsPostAsync("api/v1/EventUser", request);

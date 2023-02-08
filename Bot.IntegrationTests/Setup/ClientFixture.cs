@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using Bot.Infrastructure.Persistence;
+using Bot.IntegrationTests.SeedWork;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bot.IntegrationTests.Commons;
@@ -9,6 +10,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
 {
     private readonly WebAppTestFactory<Program, AppDbContext> Factory;
     public readonly HttpClient Client;
+    private readonly SeedCreator _seedWork;
     public readonly AppDbContext dbContext;
 
     public ClientFixture(WebAppTestFactory<Program, AppDbContext> factory)
@@ -17,6 +19,10 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
         var scope = factory.Services.CreateScope();
         dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         Client = factory.CreateClient();
+        _seedWork = scope.ServiceProvider.GetRequiredService<SeedCreator>();
+        new Action( async() => await _seedWork.AddEvents())();
+        new Action( async() => await _seedWork.AddRewards())();
+        new Action( async() => await _seedWork.AddEventUsers())();
     }
 
     public async Task<HttpResponseMessage> AsPostAsync<T>(string url, T body)
@@ -25,7 +31,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
         var buffer = System.Text.Encoding.UTF8.GetBytes(json);
         var byteContent = new ByteArrayContent(buffer);
         byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        return await Client.PostAsync("api/v1/Event", byteContent);
+        return await Client.PostAsync(url, byteContent);
     }
 
     public async Task<HttpResponseMessage> AsPutAsync<T>(string url, T body)
@@ -34,7 +40,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
         var buffer = System.Text.Encoding.UTF8.GetBytes(json);
         var byteContent = new ByteArrayContent(buffer);
         byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        return await Client.PutAsync("api/v1/Event", byteContent);
+        return await Client.PutAsync(url, byteContent);
     }
 
     public async Task<HttpResponseMessage> AsGetAsync(string url)

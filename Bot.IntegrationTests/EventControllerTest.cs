@@ -2,7 +2,6 @@ using Bot.Application.Event.Commands;
 using Bot.Infrastructure.Persistence;
 using Bot.IntegrationTests.Commons;
 using System.Net;
-using Bot.IntegrationTests.Setup;
 
 namespace Bot.IntegrationTests;
 
