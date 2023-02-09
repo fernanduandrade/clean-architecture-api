@@ -14,15 +14,17 @@ public class EventControllerTest : ClientFixture
     [InlineData("api/v1/Event?PageNumber=1&PageSize=1")]
     public async Task GetEventPaginated_Should_Return200Ok(string url)
     {
+        await SeedWork.AddEvents();
+
         var response = await AsGetAsync(url);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Theory]
-    [InlineData("api/v1/Event/find-active?query=1")]
+    [InlineData("api/v1/Event/find-active?query=1001")]
     public async Task GetActiveEventById_Should_Return200Ok(string url)
     {
-
+        await SeedWork.AddEvents();
         var response = await AsGetAsync(url);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
@@ -45,13 +47,14 @@ public class EventControllerTest : ClientFixture
     [Fact]
     public async Task UpdateEvent_Should_Return200Ok()
     {
+        await SeedWork.AddEvents();
+        
         UpdateEventCommand @event = new()
         {
-            Id = 1,
+            Id = 1001,
             DateStart = DateTime.UtcNow,
-            ExpireAt = DateTime.UtcNow.AddDays(3),
             Description = "Event about general knowlodge",
-            IsActive = true
+            IsActive = false
         };
 
         var response = await AsPutAsync("api/v1/Event", @event);

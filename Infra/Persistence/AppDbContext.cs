@@ -45,7 +45,7 @@ public class AppDbContext : ApiAuthorizationDbContext<ApplicationUser>, IAppCont
         optionsBuilder.AddInterceptors(_auditableEntitySaveChangesInterceptor);
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         await _mediator.DispatchDomainEvents(this);
         var result = await base.SaveChangesAsync(cancellationToken);

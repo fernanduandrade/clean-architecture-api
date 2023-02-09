@@ -10,11 +10,12 @@ public class EventUserControllerTest : ClientFixture
     public EventUserControllerTest(WebAppTestFactory<Program, AppDbContext> factory) : base(factory) {}
 
     [Theory]
-    [InlineData("1")]
-    [InlineData("2")]
-    [InlineData("3")]
+    [InlineData("2001")]
     public async Task DeleteEventUser_Should_Return_200Ok(string id)
     {
+        await SeedWork.AddEvents();
+        await SeedWork.AddEventUsers();
+
         var url = $"api/v1/EventUser?Id={id}";
 
         var response = await AsDeleteAsync(url);
@@ -23,11 +24,12 @@ public class EventUserControllerTest : ClientFixture
     }
 
     [Theory]
-    [InlineData("2129463319")]
-    [InlineData("1365659938")]
-    [InlineData("1781398562")]
+    [InlineData("985216762557644891")]
     public async Task GetCheckUser_Should_Return_200Ok(string id)
     {
+        await SeedWork.AddEvents();
+        await SeedWork.AddEventUsers();
+
         var url = $"api/v1/EventUser/check-user?UserDiscordId={id}";
 
         var response = await AsGetAsync(url);

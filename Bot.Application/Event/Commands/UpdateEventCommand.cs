@@ -29,7 +29,10 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, ApiR
 
     public async Task<ApiResult<bool>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
-        var entity = await _context.Events.FirstOrDefaultAsync(evt => evt.Id == request.Id);
+        var entity = await _context
+            .Events
+            .AsNoTracking()
+            .FirstOrDefaultAsync(evt => evt.Id == request.Id);
 
         if(entity is null)
         {
@@ -47,8 +50,7 @@ public class UpdateEventCommandHandle : IRequestHandler<UpdateEventCommand, ApiR
 
         newEntity.AddDomainEvent(new EventCreatedEvent(newEntity));
         _context.Events.Entry(newEntity).State = EntityState.Modified;
-         await _context.SaveChangesAsync(cancellationToken);
-        
+        await _context.SaveChangesAsync(cancellationToken);
         return new ApiResult<bool>(true, "Operação concluida com sucesso");
     }
 }

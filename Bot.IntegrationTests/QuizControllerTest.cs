@@ -13,6 +13,7 @@ public class QuizControllerTest : ClientFixture
     [InlineData("api/v1/Quiz/get-by-event-id?EventId=1")]
     public async Task GetQuizByEventIdEndpoint_Should_Return200Ok(string url)
     {
+        await SeedWork.AddEvents();
         var response = await AsGetAsync(url);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);

@@ -10,7 +10,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
 {
     private readonly WebAppTestFactory<Program, AppDbContext> Factory;
     public readonly HttpClient Client;
-    private readonly SeedCreator _seedWork;
+    public readonly SeedCreator SeedWork;
     public readonly AppDbContext dbContext;
 
     public ClientFixture(WebAppTestFactory<Program, AppDbContext> factory)
@@ -19,10 +19,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
         var scope = factory.Services.CreateScope();
         dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         Client = factory.CreateClient();
-        _seedWork = scope.ServiceProvider.GetRequiredService<SeedCreator>();
-        new Action( async() => await _seedWork.AddEvents())();
-        new Action( async() => await _seedWork.AddRewards())();
-        new Action( async() => await _seedWork.AddEventUsers())();
+        SeedWork = scope.ServiceProvider.GetRequiredService<SeedCreator>();
     }
 
     public async Task<HttpResponseMessage> AsPostAsync<T>(string url, T body)
@@ -49,7 +46,7 @@ public class ClientFixture : IClassFixture<WebAppTestFactory<Program, AppDbConte
     }
 
     public async Task<HttpResponseMessage> AsDeleteAsync(string url)
-    {
+    {   
         return await Client.DeleteAsync(url);
     }
 }

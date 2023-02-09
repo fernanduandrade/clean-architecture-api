@@ -12,6 +12,9 @@ public class RewardControllerTest : ClientFixture
     [Fact]
     public async Task ClaimReward_Should_Return200Ok()
     {
+        await SeedWork.AddEvents();
+        await SeedWork.AddRewards();
+
         ClaimRewardCommand reward = new()
         {
             FkEvent = 1001,

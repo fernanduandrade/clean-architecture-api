@@ -28,6 +28,7 @@ public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, ApiR
     public async Task<ApiResult<ClaimRewardDTO>> Handle(ClaimRewardCommand request, CancellationToken cancellationToken)
     {
         var avaliableReward = await _appContext.Rewards
+            .AsNoTracking()
             .OrderBy(o => o.Id)
             .FirstOrDefaultAsync(reward =>
                 reward.FkEvent == request.FkEvent
@@ -69,5 +70,6 @@ public class ClaimRewardCommandHandle : IRequestHandler<ClaimRewardCommand, ApiR
         }
 
         return new ApiResult<ClaimRewardDTO>(new ClaimRewardDTO(), "falha ao obter a recompensa.");
+        
     }
 }
