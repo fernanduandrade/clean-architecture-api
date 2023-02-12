@@ -1,4 +1,4 @@
-Exemplo de REST API .NET CORE com CQRS implementado usando raw SQL, DDD seguindo Clean Architecture.
+Exemplo de REST API .NET CORE com CQRS implementado usando DDD seguindo Clean Architecture.
 ==============================================================
 
 ## CI
@@ -17,9 +17,7 @@ Examplo de uma aplicação do tipo REST API utilizando .NET CORE, implementando 
 
 ## CQRS
 
-Read Model - executa as queries usando raw SQL para melhor performance.
-
-Write Model - abordagem Domain Driven Design (usando Entity Framework Core).
+Read Model / Write Model - abordagem Domain Driven Design (usando Entity Framework Core).
 
 Commands/Queries/Domain Eventos utilizam o pacote [MediatR](https://github.com/jbogard/MediatR).
 
