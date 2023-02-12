@@ -25,7 +25,7 @@ public class GetUserCompleteEventQueryHandle : IRequestHandler<GetUserCompleteEv
             var result = await _appContext.EventUsers
             .AsNoTracking()
             .Where(evtUser => evtUser.FkUser == request.UserDiscordId)
-            .FirstOrDefaultAsync(cancellationToken);
+            .FirstOrDefaultAsync();
 
         if(result is null)
         {
