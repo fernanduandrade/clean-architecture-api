@@ -45,4 +45,20 @@ public class EventController : BaseController
         return Ok(result);
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(ApiResult<EventDTO>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResult<EventDTO>>> GetByEventId([FromQuery]GetEventByIdQuery query)
+    {
+        var result = await Mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(typeof(ApiResult<EventDTO>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ApiResult<EventDTO>>> DeleteEvent([FromQuery]DeleteEventCommand query)
+    {
+        var result = await Mediator.Send(query);
+        return Ok(result);
+    }
+
 }
