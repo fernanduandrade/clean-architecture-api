@@ -3,7 +3,6 @@ using Bot.Application.Common.Interfaces;
 using Bot.Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Entites = Bot.Domain.Entities;
 
 namespace Bot.Application.Event.Commands;
