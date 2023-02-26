@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Bot.Application.Common.Mapping;
-using Bot.Application.Event.DTO;
 using Entities = Bot.Domain.Entities;
 
 namespace Bot.Application.Quiz.DTO;

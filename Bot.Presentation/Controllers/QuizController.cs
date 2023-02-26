@@ -19,7 +19,7 @@ public class QuizController : BaseController
 
     [HttpPost]
     [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status201Created)]
-    public async Task<ActionResult<ApiResult<int>>> CreateUserEvent([FromBody] CreateQuizCommand command)
+    public async Task<ActionResult<ApiResult<int>>> CreateQuiz([FromBody] CreateQuizCommand command)
     {
         var result = await Mediator.Send(command);
         return Created("", result);
@@ -27,7 +27,7 @@ public class QuizController : BaseController
 
     [HttpDelete]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
-    public async Task<ActionResult<ApiResult<bool>>> DeleteUserEvent([FromQuery] DeleteQuizCommand command)
+    public async Task<ActionResult<ApiResult<bool>>> DeleteQuiz([FromQuery] DeleteQuizCommand command)
     {
         var result = await Mediator.Send(command);
         return Ok(result);
@@ -36,7 +36,7 @@ public class QuizController : BaseController
     [HttpGet]
     [ProducesResponseType(typeof(ApiResult<PaginatedList<QuizDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(PaginatedList<string>), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ApiResult<PaginatedList<QuizDTO>>>> GetEventsUser([FromQuery] GetQuizPaginatedQuery query)
+    public async Task<ActionResult<ApiResult<PaginatedList<QuizDTO>>>> GetQuizPaginated([FromQuery] GetQuizPaginatedQuery query)
     {
         var result = await Mediator.Send(query);
         return Ok(result);
@@ -45,7 +45,7 @@ public class QuizController : BaseController
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(ApiResult<QuizDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<string>), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ApiResult<QuizDTO>>> GetEventsUserById([FromQuery] GetQuizByIdQuery query)
+    public async Task<ActionResult<ApiResult<QuizDTO>>> GetQuizById([FromQuery] GetQuizByIdQuery query)
     {
         var result = await Mediator.Send(query);
         return Ok(result);
@@ -54,7 +54,7 @@ public class QuizController : BaseController
     [HttpPut]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ApiResult<bool>>> UpdateEventsUser([FromQuery] UpdateQuizCommand command)
+    public async Task<ActionResult<ApiResult<bool>>> UpdateQuiz([FromQuery] UpdateQuizCommand command)
     {
         var result = await Mediator.Send(command);
         return Ok(result);
